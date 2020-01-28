@@ -3,17 +3,16 @@
 
 class LineSearch
 {
-    public function lineSearchInArray(array $myArray, int $index): ?int
+    public function search($array, $desiredItem): ?int
     {
-        for ($i = 0; $i <= $index; $i++) {
-            if ($i == $index) {
-                return $index;
-            } else {
-               return $index += $i;
+        for($i = 0; $i < count($array); $i++) {
+            if($array[$i] == $desiredItem) {
+                return $i;
             }
         }
+        return null;
     }
 }
 $array = [0, 5, 7, 10, 15];
 $test = new LineSearch();
-var_dump($test->lineSearchInArray($array, 7));
+var_dump($test->search($array, 0));
