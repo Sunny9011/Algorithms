@@ -26,6 +26,5 @@ class BinarySearch
     }
 }
 $array = [1,2,3,4,5,6,7,8,9];
-$item = 9;
 $test = new BinarySearch();
-var_dump($test->binarySearchInArray($array, $item));
+var_dump($test->binarySearchInArray($array, 5));
