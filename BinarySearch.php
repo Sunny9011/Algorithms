@@ -2,28 +2,30 @@
 
 class BinarySearch
 {
-    function binarySearchInArray(array $array, int $item, $start = 0, $end = null): int
+    function binarySearchInArray(array $sortArray, int $desiredItem, $leftSide = 0, $rightSide = null): ?int
     {
-        if ($end == null) {
-            $end = count($array) - 1;
+        if ($desiredItem > count($sortArray)) {
+            return null;
+        } elseif ($desiredItem < 0) {
+            return null;
         }
-        if ($start > $end) {
-            throw new LogicException('Item not found');
+        if ($rightSide == null) {
+            $rightSide = count($sortArray) - 1;
         }
-        $halfIndex = ($start + $end) / 2;
-        if ($array[$halfIndex] !== $item) {
-            if ($array[$halfIndex] < $item) {
-                $start = $halfIndex + 1;
-            } else {
-                $end = $halfIndex - 1;
+        if ($leftSide > $rightSide) {
+            return null;
+        }
+        $midPoint = floor(($leftSide + $rightSide) / 2);
+        if ($sortArray[$midPoint] == $desiredItem) {
+            return $midPoint;
+        } elseif ($sortArray[$midPoint] > $desiredItem) {
+            return $this->binarySearchInArray($sortArray, $desiredItem, $leftSide, $midPoint -1 );
+        } else {
+            return $this->binarySearchInArray($sortArray, $desiredItem, $midPoint + 1, $rightSide);
             }
-            return $this->binarySearchInArray($array, $item, $start, $end);
-        }
-
-        return $halfIndex;
     }
 }
-$array = [1];
-$item = 1;
+$array = [1,2,3,4,5,6,7,8,9];
+$item = 9;
 $test = new BinarySearch();
-print_r($test->binarySearchInArray($array, $item));
+var_dump($test->binarySearchInArray($array, $item));
