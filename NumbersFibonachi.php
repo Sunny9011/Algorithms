@@ -15,4 +15,4 @@ function getNumberFibonacci(int $number): ?array
 }
 
 echo "<pre>";
-var_dump(getNumberFibonacci(15));
+var_dump(getNumberFibonacci(10));
